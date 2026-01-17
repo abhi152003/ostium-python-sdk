@@ -17,7 +17,7 @@ class NetworkConfig:
     @classmethod
     def mainnet(cls) -> 'NetworkConfig':
         return cls(
-            graph_url="https://api.goldsky.com/api/public/project_cmgql529ykrlw01v6b9so0woq/subgraphs/ost-prod/v8/gn",
+            graph_url="https://api.subgraph.ormilabs.com/api/public/67a599d5-c8d2-4cc4-9c4d-2975a97bc5d8/subgraphs/ost-prod/live/gn",
             contracts={
                 "usdc": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
                 "trading": "0x6D0bA1f9996DBD8885827e1b2e8f6593e7702411",
@@ -29,7 +29,7 @@ class NetworkConfig:
     @classmethod
     def testnet(cls) -> 'NetworkConfig':
         return cls(
-            graph_url="https://api.goldsky.com/api/public/project_cmgql529ykrlw01v6b9so0woq/subgraphs/ost-sep-final/v2/gn",
+            graph_url="https://api.subgraph.ormilabs.com/api/public/67a599d5-c8d2-4cc4-9c4d-2975a97bc5d8/subgraphs/ost-sep/live/gn",
             contracts={
                 "usdc": "0xe73B11Fb1e3eeEe8AF2a23079A4410Fe1B370548",
                 "trading": "0x2A9B9c988393f46a2537B0ff11E98c2C15a95afe",
