@@ -130,8 +130,12 @@ class Ostium:
                 else:
                     raise Exception('Invalid order type')
 
-            slippage = int(self.slippage_percentage * PRECISION_2)
-            
+            # Slippage only applies to market orders; limit/stop orders must use 0
+            if order_type == OpenOrderType.MARKET.value:
+                slippage = int(self.slippage_percentage * PRECISION_2)
+            else:
+                slippage = 0
+
             # Create BuilderFee struct with default values (zero address and zero fee)
             # Can be customized if builder fees are needed in the future
             builder_fee = {
