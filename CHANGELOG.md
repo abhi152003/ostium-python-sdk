@@ -5,6 +5,15 @@ All notable changes to the Ostium Python SDK will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2026-02-14
+
+### Breaking Changes
+- **Limit and Stop orders now enforce slippage = 0** per contract upgrade. Slippage is no longer configurable for LIMIT/STOP order types and is hardcoded to 0. Market orders are unaffected.
+
+### Changed
+- Migrated subgraph URLs to new Ormi Labs hosted endpoints for both mainnet and testnet
+- `perform_trade()` now sets slippage to 0 for LIMIT and STOP orders regardless of `set_slippage_percentage()` value
+
 ## [3.0.0] - 2025-10-15
 
 ### Breaking Changes
