@@ -5,6 +5,30 @@ All notable changes to the Ostium Python SDK will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2026-04-28
+
+> **Release timing:** Upgrade to `3.2.0` on **Apr 28 after 9:00 AM EST**, when the contract upgrade is live.  
+> Upgrading earlier may prevent opening new trades, and staying on an older version after go-live may also prevent opening new trades.
+
+### Breaking Changes
+- **`openTrade` contract upgrade: `isDayTrade` field added to the `Trade` struct.** The `perform_trade()` method now accepts an optional `is_day_trade` parameter (default: `False`).
+
+### Added
+- `is_day_trade` parameter in `perform_trade()` via `trade_params['is_day_trade']` (defaults to `False`)
+
+### Migration Guide
+- For most pairs (`overnightMaxLeverage === 0`, e.g. crypto, forex, commodities) no changes are needed — `isDayTrade` defaults to `False` and is safely ignored by the contract.
+- For stock pairs where `overnightMaxLeverage > 0`, set `is_day_trade=True` when the trade's leverage exceeds `overnightMaxLeverage`. Note that such trades will be **auto-closed before market close**.
+- Use the subgraph method `get_pair_details(pair_id)` to read `overnightMaxLeverage` for a given pair.
+
+```python
+# For crypto/forex/commodities — no change needed (default False)
+trade_params = { ..., 'is_day_trade': False }
+
+# For stock pairs, when the desired leverage exceeds overnightMaxLeverage, set is_day_trade=True:
+trade_params = { ..., 'is_day_trade': True }  # trade will auto-close before market close
+```
+
 ## [3.1.0] - 2026-02-14
 
 ### Breaking Changes
