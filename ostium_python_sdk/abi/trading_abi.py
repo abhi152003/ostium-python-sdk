@@ -1700,6 +1700,11 @@ trading_abi = [
                         "internalType": "bool",
                         "name": "buy",
                         "type": "bool"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "isDayTrade",
+                        "type": "bool"
                     }
                 ],
                 "internalType": "struct IOstiumTradingStorage.Trade",

@@ -115,7 +115,8 @@ class Ostium:
                 'leverage': to_base_units(trade_params['leverage'], decimals=2),
                 'pairIndex': int(trade_params['asset_type']),
                 'index': 0,
-                'buy': trade_params['direction']
+                'buy': trade_params['direction'],
+                'isDayTrade': trade_params.get('is_day_trade', False)
             }
 
             order_type = OpenOrderType.MARKET.value
