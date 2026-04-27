@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.2.0] - 2026-04-28
 
+> **Release timing:** Upgrade to `3.2.0` on **Apr 28 after 9:00 AM EST**, when the contract upgrade is live.  
+> Upgrading earlier may prevent opening new trades, and staying on an older version after go-live may also prevent opening new trades.
+
 ### Breaking Changes
 - **`openTrade` contract upgrade: `isDayTrade` field added to the `Trade` struct.** The `perform_trade()` method now accepts an optional `is_day_trade` parameter (default: `False`).
 
