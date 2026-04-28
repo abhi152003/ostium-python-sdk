@@ -115,7 +115,8 @@ class Ostium:
                 'leverage': to_base_units(trade_params['leverage'], decimals=2),
                 'pairIndex': int(trade_params['asset_type']),
                 'index': 0,
-                'buy': trade_params['direction']
+                'buy': trade_params['direction'],
+                'isDayTrade': trade_params.get('is_day_trade', False)
             }
 
             order_type = OpenOrderType.MARKET.value
@@ -130,7 +131,11 @@ class Ostium:
                 else:
                     raise Exception('Invalid order type')
 
-            slippage = int(self.slippage_percentage * PRECISION_2)
+            # Slippage only applies to market orders; limit/stop orders must use 0
+            if order_type == OpenOrderType.MARKET.value:
+                slippage = int(self.slippage_percentage * PRECISION_2)
+            else:
+                slippage = 0
             
             # Create BuilderFee struct with default values (zero address and zero fee)
             # Can be customized if builder fees are needed in the future
